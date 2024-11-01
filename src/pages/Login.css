@@ -1,0 +1,132 @@
+.fondo-login {
+    background-Image: url('img/Login.jpg');
+    background-Size: cover;
+    background-Position: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-Content: center; 
+    align-Items: center;
+}
+
+.menu-login {
+    background: rgba(0, 0, 0, 0.7); 
+    width: 20%;
+    padding: 20px;
+    border-Radius: 8px;
+    position: relative; 
+}
+
+.icono-usuario-login {
+    color: white;
+    font-Size: 6rem;
+    padding: 10px; 
+    margin-Bottom: 10px;
+}
+
+.titulo-menu-login {
+    color: white;
+    margin-Bottom: 25px;
+}
+
+.direccion-campo-login {
+    display: flex;
+    flex-Direction: column;
+}
+
+.orientacion-campo-login {
+    display: flex;
+    align-Items: center;
+}
+
+.espacio-componentes-login-1 {
+    margin-Bottom: 50px;
+}
+
+.espacio-componentes-login-2 {
+    margin-Bottom: 30px;
+}
+
+.espacio-componentes-login-3 {
+    margin-Bottom: 5px;
+}
+
+.texto-emergente-campo-login {
+    color: aqua; 
+    text-Align: left; 
+    font-Size: 0.8rem; 
+    padding-top: 0px;
+    padding-left: 8px;
+    position: absolute;
+}
+
+.entryarea{
+    position: relative;
+    height: 50px;
+    line-height: 40px;
+    outline: none;
+}
+
+input{
+    width: 120%;
+    color: #ffffff;
+    padding-top: 30px;
+    line-height: 10px;
+    padding-left: 5px;
+    font-size: 1.2rem; 
+    border-radius: 5px;
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    transition: 0.1s ease;
+    outline: none;
+}
+
+.labelLine{
+    position: absolute;
+    top: 23px;
+    left: 8px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    background-color: transparent;
+    transition: 0.2s ease;
+    white-space: nowrap;
+}
+
+input:focus,
+input:valid{
+    color: aqua;
+    border: 4px solid aqua;
+    top: 20px;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 2px solid aqua;
+    outline: none; /* Asegura que no haya contorno */
+    box-shadow: none; /* Elimina cualquier sombra */
+}
+input:focus + .labelLine,
+input:valid + .labelLine{
+    color: aqua;
+    top: 15px;
+    font-size: 0.8rem;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    transform: translate(-15px, -16px) scale(0.88);
+}
+
+input:placeholder-shown + .labelLine {
+    top: 23px; /* posición original */
+    font-size: 1.2rem; /* tamaño original */
+    color: #ffffff; /* color original */
+}
+
+input:placeholder-shown {
+    top: 23px; /* posición original */
+    font-size: 1.2rem; /* tamaño original */
+    color: #ffffff; /* color original */
+    border-bottom: 2px solid white;
+}
