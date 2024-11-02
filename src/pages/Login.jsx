@@ -1,15 +1,52 @@
 import { FaUserCircle } from "react-icons/fa";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+
 import './Login.css'
+import Logo from "../../img/Logo-1.png"
 
 function Login () {  
   const [showTextEmail, setShowTextEmail] = useState(false);
   const [showTextContraseña, setShowTextContraseña] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    document.title = "SXW - INICIAR SESIÓN"
+    toast("¡Bienvenido(a) a Sonido Xaviers Web!",{
+      className: "toast-mensaje-informacion"
+    });
+    toast("¡Inicia sesión para acceder a la pagina principal!",{
+      className: "toast-mensaje-informacion"
+    });
+  },[]);
+
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const CrearCuenta = async () => {
+    setLoading(true);
+    document.title = "Cargando...";
+    await delay(2000);
+    navigate("/CrearCuenta",{replace: true});
+    await delay(2000);
+    document.title = "SXW - CREAR CUENTA";
+    setLoading(false);
+  };
 
   return(
     <div className="fondo-login">
+
+      <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      closeOnClick
+      pauseOnHover
+      draggable
+      limit={2}/>
+
 			<div className='container menu-login'>
-        <FaUserCircle className="icono-usuario-login"/>
+        <img src={Logo} alt="Logo de SXW" className="logo-menu-login"/>
         <p className="text-center fw-semibold titulo-menu-login">INICIA SESIÓN CON TU CUENTA</p>
         {/*-----------------------------------CAMPO DE CORREO-----------------------------------*/}
         <div className="input-group mb-3 direccion-campo-login">
@@ -75,7 +112,14 @@ function Login () {
           INICIAR SESIÓN
         </button>
         <div className="espacio-componentes-login-3"></div>
-        <a href="#">Crear cuenta</a>
+        {loading ? (
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+          ) : (
+            <button className="btn btn-link" onClick={CrearCuenta}>Crear Cuenta</button>
+          )
+        }    
       </div>
 		</div>
   );
