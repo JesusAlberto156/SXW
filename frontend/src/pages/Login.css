@@ -1,6 +1,6 @@
-/*--------FONDO DEL CREATEACCOUNTS--------*/
-.fondo-createAccounts {
-    background-Image: url('img/CreateAccounts.jpg');
+/*--------FONDO DEL LOGIN--------*/
+.fondo-login {
+    background-Image: url('img/Login.jpg');
     background-Size: cover;
     background-Position: center;
     width: 100vw;
@@ -14,19 +14,19 @@
     padding: 20px;
 }
 @media (max-width: 768px) {
-    .fondo-createAccounts {
+    .fondo-login {
         background-size: auto; 
         padding: 10px;
     }
 }
 @media (max-width: 480px) {
-    .fondo-createAccounts {
+    .fondo-login {
         flex-direction: column;
         background-size: cover;
         padding: 5px; 
     }
 }
-/*--------FONDO DEL CREATEACCOUNTS--------*/
+/*--------FONDO DEL LOGIN--------*/
 /*--------ALERTA INFORMACION--------*/
 .toast-mensaje-informacion {
     background: darkblue;
@@ -58,8 +58,70 @@
     }
 }
 /*--------ALERTA INFORMACION--------*/
-/*--------LOGO PARA CREATEACCOUNTS--------*/
-.logo-menu-createAccounts {
+/*--------ALERTA CORRECTO--------*/
+.toast-mensaje-correcto {
+    background: darkgreen;
+    color: #fff;
+    font-size: 18px;
+    padding: 5px 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    top: 5px;
+    text-align: center;
+    word-wrap: break-word;
+    max-width: 90vw;
+}
+@media (max-width: 768px) {
+    .toast-mensaje-correcto {
+        font-size: 16px;
+        margin-top: 5px;
+        top: 10px;
+        left: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-mensaje-correcto {
+        font-size: 14px;
+        margin-top: 5px;
+        top: 10px;
+        left: 16px;
+    }
+}
+/*--------ALERTA CORRECTO--------*/
+/*--------ALERTA INCORRECTO--------*/
+.toast-mensaje-incorrecto {
+    background: darkred;
+    color: #fff;
+    font-size: 18px;
+    padding: 5px 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    top: 5px;
+    text-align: center;
+    word-wrap: break-word;
+    max-width: 90vw;
+}
+@media (max-width: 768px) {
+    .toast-mensaje-incorrecto {
+        font-size: 16px;
+        margin-top: 5px;
+        top: 10px;
+        left: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-mensaje-incorrecto {
+        font-size: 14px;
+        margin-top: 5px;
+        top: 10px;
+        left: 16px;
+    }
+}
+/*--------ALERTA INCORRECTO--------*/
+/*--------LOGO PARA LOGIN--------*/
+.logo-menu-login {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -69,22 +131,22 @@
     z-index: 10;
 }
 @media (max-width: 768px) {
-    .logo-menu-createAccounts {
+    .logo-menu-login {
         left: 46%;
-        width: 30vw;
+        width: 35vw;
         max-width: 200px; 
     }
 }
 @media (max-width: 480px) {
-    .logo-menu-createAccounts {
+    .logo-menu-login {
         left: 50%;
         width: 70vw; 
         max-width: 200px; 
     }
 }
-/*--------LOGO PARA CREATEACCOUNTS--------*/
-/*--------MENU CREATEACCOUNTS--------*/
-.menu-createAccounts {
+/*--------LOGO PARA LOGIN--------*/
+/*--------MENU LOGIN--------*/
+.menu-login {
     background: rgba(0, 0, 0, 0.7); 
     top: 2px;
     width: 20%;
@@ -94,114 +156,114 @@
     position: relative; 
 }
 @media (max-width: 768px) {
-    .menu-createAccounts {
+    .menu-login {
         width: 50%;
         padding: 15px;
         max-width: 250px;
     }
 }
 @media (max-width: 480px) {
-    .menu-createAccounts {
+    .menu-login {
         width: 80%;
         padding: 10px;
         max-width: 200px;
     }
 }
-/*--------MENU CREATEACCOUNTS--------*/
-/*--------ICONO USUARIO CREATEACCOUNTS--------*/
-.icono-usuario-createAccounts {
+/*--------MENU LOGIN--------*/
+/*--------ICONO USUARIO LOGIN--------*/
+.icono-usuario-login {
     color: white;
     font-size: 6rem;
     padding: 10px; 
     margin-bottom: 10px; 
 }
 @media (max-width: 768px) {
-    .icono-usuario-createAccounts {
+    .icono-usuario-login {
         font-size: 5rem; 
     }
 }
 @media (max-width: 480px) {
-    .icono-usuario-createAccounts {
+    .icono-usuario-login {
         font-size: 4rem;
     }
 }
-/*--------ICONO USUARIO CREATEACCOUNTS--------*/
-/*--------TITULO MENU CREATEACCOUNTS--------*/
-.titulo-menu-createAccounts {
+/*--------ICONO USUARIO LOGIN--------*/
+/*--------TITULO MENU LOGIN--------*/
+.titulo-menu-login {
     color: white;
     font-size: 1rem;
     margin-bottom: 25px;
 }
 @media (max-width: 768px) {
-    .titulo-menu-createAccounts {
+    .titulo-menu-login {
         font-size: 0.8rem;
         margin-bottom: 20px;
     }
 }
 @media (max-width: 480px) {
-    .titulo-menu-createAccounts {
+    .titulo-menu-login {
         font-size: 0.7rem;
         margin-bottom: 15px;
     }
 }
-/*--------TITULO MENU CREATEACCOUNTS--------*/
-/*--------DIRECCION Y ORIENTACION DE CAMPO CREATEACCOUNTS--------*/
-.direccion-campo-createAccounts {
+/*--------TITULO MENU LOGIN--------*/
+/*--------DIRECCION Y ORIENTACION DE CAMPO LOGIN--------*/
+.direccion-campo-login {
     display: flex;
     flex-Direction: column;
     width: 100%;
 }
-.orientacion-campo-createAccounts {
+.orientacion-campo-login {
     display: flex;
     align-Items: center;
     justify-content: space-between;
 }
 @media (max-width: 768px) {
-    .direccion-campo-createAccounts {
+    .direccion-campo-login {
         flex-direction: column;
         width: 100%; 
     }
-    .orientacion-campo-createAccounts {
+    .orientacion-campo-login {
         flex-direction: column;
         align-items: flex-start;
     }
 }
-/*--------DIRECCION Y ORIENTACION DE CAMPO CREATEACCOUNTS--------*/
-/*--------ESPACIOS ENTRE COMPONENTES CREATEACCOUNTS--------*/
-.espacio-componentes-createAccounts-1 {
+/*--------DIRECCION Y ORIENTACION DE CAMPO LOGIN--------*/
+/*--------ESPACIOS ENTRE COMPONENTES LOGIN--------*/
+.espacio-componentes-login-1 {
     margin-Bottom: 50px;
 }
-.espacio-componentes-createAccounts-2 {
+.espacio-componentes-login-2 {
     margin-Bottom: 30px;
 }
-.espacio-componentes-createAccounts-3 {
+.espacio-componentes-login-3 {
     margin-Bottom: 15px;
 }
 @media (max-width: 768px) {
-    .espacio-componentes-createAccounts-1 {
+    .espacio-componentes-login-1 {
         margin-bottom: 45px;
     }
-    .espacio-componentes-createAccounts-2 {
+    .espacio-componentes-login-2 {
         margin-bottom: 30px; 
     }
-    .espacio-componentes-createAccounts-3 {
+    .espacio-componentes-login-3 {
         margin-bottom: 15px;
     }
 }
 @media (max-width: 480px) {
-    .espacio-componentes-createAccounts-1 {
+    .espacio-componentes-login-1 {
         margin-bottom: 45px; 
     }
-    .espacio-componentes-createAccounts-2 {
+    .espacio-componentes-login-2 {
         margin-bottom: 30px; 
     }
-    .espacio-componentes-createAccounts-3 {
+    .espacio-componentes-login-3 {
         margin-bottom: 15px;
     }
 }
-/*--------ESPACIOS ENTRE COMPONENTES CREATEACCOUNTS--------*/
-/*--------TEXTO EMERGENTE DEL CAMPO CREATEACCOUNTS--------*/
-.texto-emergente-campo-createAccounts {
+/*--------ESPACIOS ENTRE COMPONENTES LOGIN--------*/
+/*--------TEXTO EMERGENTE DEL CAMPO LOGIN--------*/
+.texto-emergente-campo-login {
     color: aqua; 
     text-Align: left; 
     font-Size: 0.8rem; 
@@ -210,21 +272,21 @@
     position: absolute;
 }
 @media (max-width: 768px) {
-    .texto-emergente-campo-createAccounts {
+    .texto-emergente-campo-login {
         font-size: 0.7rem;
         margin: 0px;
         padding-left: 7px; 
     }
 }
 @media (max-width: 480px) {
-    .texto-emergente-campo-createAccounts {
+    .texto-emergente-campo-login {
         font-size: 0.6rem;
         margin: 0px;
         padding-left: 6px;
     }
 }
-/*--------TEXTO EMERGENTE DEL CAMPO CREATEACCOUNTS--------*/
-/*--------CAMPO INPUT DEL CREATEACCOUNTS--------*/
+/*--------TEXTO EMERGENTE DEL CAMPO LOGIN--------*/
+/*--------CAMPO INPUT DEL LOGIN--------*/
 .entryarea{
     position: relative;
     height: 50px;
@@ -305,4 +367,4 @@ input:valid + .labelLine{
         left: 3px; 
     }
 }
-/*--------CAMPO INPUT DEL CREATEACCOUNTS--------*/
+/*--------CAMPO INPUT DEL LOGIN--------*/

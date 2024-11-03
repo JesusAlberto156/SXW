@@ -11,7 +11,8 @@ function CreateAccounts () {
     const [showTextUsuario, setShowTextUsuario] = useState(false);
     const [showTextEmail, setShowTextEmail] = useState(false);
     const [showTextContraseña, setShowTextContraseña] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loadingLogin, setLoadingLogin] = useState(false);
+    const [loadingHome, setLoadingHome] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -27,13 +28,27 @@ function CreateAccounts () {
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     const IniciarSesion = async () => {
-        setLoading(true);
+        setLoadingLogin(true);
         document.title = "Cargando...";
         await delay(2000);
         navigate("/",{replace: true});
         await delay(2000);
         document.title = "SXW - INICIAR SESION";
-        setLoading(false);
+        setLoadingLogin(false);
+    };
+
+    const Inicio = async () => {
+        setLoadingHome(true);
+        document.title = "Cargando...";
+        toast("¡Se creo la cuenta correctamente!",{
+          className: "toast-mensaje-correcto",
+          autoClose: 2000
+        });
+        await delay(3000);
+        navigate("/Inicio",{replace: true});
+        await delay(2000);
+        document.title = "SXW - INICIO";
+        setLoadingHome(false);
     };
 
     return(
@@ -176,13 +191,22 @@ function CreateAccounts () {
                 )}
                 {/*---------------------------------CAMPO DE CONTRASEÑA---------------------------------*/}
                 <div className="espacio-componentes-createAccounts-1"></div>
-
-                <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal">
-                    CREAR CUENTA
-                </button>
-
+                {loadingHome ? (
+                    <div class="spinner-border text-danger" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div> 
+                ) : (
+                    <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
+                        onClick={
+                            Inicio
+                        }
+                    >
+                        CREAR CUENTA
+                    </button>
+                )
+                }
                 <div className="espacio-componentes-createAccounts-3"></div>
-                {loading ? (
+                {loadingLogin ? (
                     <div class="spinner-border text-primary" role="status">
                         <span class="visually-hidden">Cargando...</span>
                     </div>

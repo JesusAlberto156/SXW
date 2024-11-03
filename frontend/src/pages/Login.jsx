@@ -9,7 +9,8 @@ import Logo from "../../img/Logo-1.png"
 function Login () {  
   const [showTextEmail, setShowTextEmail] = useState(false);
   const [showTextContraseña, setShowTextContraseña] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loadingCreateAccounts, setLoadingCreateAccounts] = useState(false);
+  const [loadingHome, setLoadingHome] = useState(false);
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -25,14 +26,29 @@ function Login () {
   const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   const CrearCuenta = async () => {
-    setLoading(true);
+    setLoadingCreateAccounts(true);
     document.title = "Cargando...";
     await delay(2000);
     navigate("/CrearCuenta",{replace: true});
     await delay(2000);
     document.title = "SXW - CREAR CUENTA";
-    setLoading(false);
+    setLoadingCreateAccounts(false);
   };
+
+  const Inicio = async () => {
+    setLoadingHome(true);
+    document.title = "Cargando...";
+    toast("¡Se inicio sesión correctamente!",{
+      className: "toast-mensaje-correcto",
+      autoClose: 2000
+    });
+    await delay(3000);
+    navigate("/Inicio",{replace: true});
+    await delay(2000);
+    document.title = "SXW - INICIO";
+    setLoadingHome(false);
+  };
+
 
   return(
     <div className="fondo-login">
@@ -108,11 +124,22 @@ function Login () {
         )}
         {/*---------------------------------CAMPO DE CONTRASEÑA---------------------------------*/}
         <div className="espacio-componentes-login-1"></div>
-        <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal">
-          INICIAR SESIÓN
-        </button>
+        {loadingHome ? (
+          <div class="spinner-border text-danger" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div> 
+          ) : (
+            <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
+              onClick={
+                Inicio
+              }
+            >
+              INICIAR SESIÓN
+            </button>
+          )
+        }
         <div className="espacio-componentes-login-3"></div>
-        {loading ? (
+        {loadingCreateAccounts ? (
           <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Cargando...</span>
           </div>

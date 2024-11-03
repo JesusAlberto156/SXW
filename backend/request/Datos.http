@@ -1,0 +1,26 @@
+@api = http://localhost:3020/TEC/TEPIC/Estudiantes
+
+### GET
+GET {{api}}/
+### GET ITEM
+GET {{api}}/19400645?keyType=NC
+### POST ITEM
+POST {{api}}/
+Content-Type: application/json
+
+{
+    "NumCtrl":"19400585",
+    "Nombres":"Janeth Andrea",
+    "Apellidos":"Guillén de la Mora"
+}
+### PUT ITEM
+PUT {{api}}/19400585
+Content-Type: application/json
+
+{
+    "NumCtrl":"19400585",
+    "Nombres":"Janeth Andrea",
+    "Apellidos":"Guillén"
+}
+### DELETE ITEM
+DELETE {{api}}/67190d9d01b3050028d1b48f
