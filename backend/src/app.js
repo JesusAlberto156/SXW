@@ -19,12 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 const api = config.API_URL;
 app.get(`${api}`, (req,res)=>{
     res.send(
-        `<h1>API ejecutandose en raiz</h1> <p> Estudiantes: <b>${api}/api-docs</b> Para mas información.</p>`
-    );
-})
-app.get('/Prueba', (req,res)=>{
-    res.send(
-        `<h1>API ejecutandose en Prueba</h1> <p> Estudiantes: <b>${api}/api-docs</b> Para mas información.</p>`
+        `<h1>API ejecutandose en raiz</h1> <p> Sonido Xaviers Web: <b>${api}/api-docs</b> Para mas información.</p>`
     );
 })
 

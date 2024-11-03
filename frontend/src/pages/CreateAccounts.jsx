@@ -1,4 +1,3 @@
-import { FaUserCircle } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,6 +6,11 @@ import './CreateAccounts.css'
 import Logo from "../../img/Logo-1.png"
 
 function CreateAccounts () {  
+    const [nombre, setNombre] = useState("");
+    const [usuario, setUsuario] = useState("");
+    const [email, setEmail] = useState("");
+    const [contraseña, setContraseña] = useState("");
+    
     const [showTextNombre, setShowTextNombre] = useState(false);
     const [showTextUsuario, setShowTextUsuario] = useState(false);
     const [showTextEmail, setShowTextEmail] = useState(false);
@@ -26,6 +30,69 @@ function CreateAccounts () {
     },[]);
 
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    const CrearCuenta = async () => {
+        try {
+            if(usuario == ""){
+                toast("¡Falta agregar el nombre de usuario!",{
+                    className: "toast-mensaje-incorrecto"
+                });
+            }
+            if(nombre == ""){
+                toast("¡Falta agregar el nombre completo!",{
+                    className: "toast-mensaje-incorrecto"
+                });
+            }
+            if(email == ""){
+                toast("¡Falta agregar el e-mail!",{
+                    className: "toast-mensaje-incorrecto"
+                });
+            }
+            if(contraseña == ""){
+                toast("¡Falta agregar la contraseña!",{
+                    className: "toast-mensaje-incorrecto"
+                });
+            }
+            const response = await fetch("http://localhost:3156/sxw/usuarios/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+
+                },
+                body: JSON.stringify({
+                    usuario:usuario,
+                    nombre:nombre,
+                    email:email,
+                    contraseña:contraseña,
+                    tipo: false 
+                })
+            });
+
+            if (response.ok) {
+                setLoadingHome(true);
+                document.title = "Cargando...";
+                toast("¡Se creo la cuenta correctamente!",{
+                    className: "toast-mensaje-correcto",
+                    autoClose: 2000
+                });
+                await delay(3000);
+                navigate("/Inicio",{replace: true});
+                await delay(2000);
+                document.title = "SXW - INICIO";
+                setLoadingHome(false);
+            } else {
+                const errorData = await response.json();
+                toast(`Error: ${errorData.message}`,{
+                    className: "toast-mensaje-incorrecto"
+                });    
+            }
+        } catch (error) {
+            console.error("Error al crear la cuenta:", error);
+            toast("¡No es posible crear la cuenta!",{
+                className: "toast-mensaje-incorrecto"
+            });
+        }
+    };
 
     const IniciarSesion = async () => {
         setLoadingLogin(true);
@@ -61,7 +128,7 @@ function CreateAccounts () {
             closeOnClick
             pauseOnHover
             draggable
-            limit={2}/>
+            limit={5}/>
 
             
             <div className='container menu-createAccounts'>
@@ -86,6 +153,7 @@ function CreateAccounts () {
                                 onFocus={(e) => {
                                     e.target.nextSibling.style.color = "aqua";
                                 }}
+                                onChange={(e) => setNombre(e.target.value)}
                             />
                             <label className="labelLine" for="myInput">Nombre</label>
                         </div>
@@ -117,6 +185,7 @@ function CreateAccounts () {
                                 onFocus={(e) => {
                                     e.target.nextSibling.style.color = "aqua";
                                 }}
+                                onChange={(e) => setUsuario(e.target.value)}
                             />
                             <label className="labelLine" for="myInput">Usuario</label>
                         </div>
@@ -148,6 +217,7 @@ function CreateAccounts () {
                                 onFocus={(e) => {
                                     e.target.nextSibling.style.color = "aqua";
                                 }}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <label className="labelLine" for="myInput">E-mail</label>
                         </div>
@@ -179,6 +249,7 @@ function CreateAccounts () {
                                 onFocus={(e) => {
                                     e.target.nextSibling.style.color = "aqua";
                                 }}
+                                onChange={(e) => setContraseña(e.target.value)}
                             />
                             <label className="labelLine" for="myInput">Contraseña</label>
                         </div>
@@ -197,9 +268,7 @@ function CreateAccounts () {
                     </div> 
                 ) : (
                     <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
-                        onClick={
-                            Inicio
-                        }
+                        onClick={CrearCuenta}
                     >
                         CREAR CUENTA
                     </button>

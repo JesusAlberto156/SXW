@@ -1,26 +1,14 @@
-@api = http://localhost:3020/TEC/TEPIC/Estudiantes
+@api = http://localhost:3156/sxw/usuarios
 
-### GET
-GET {{api}}/
-### GET ITEM
-GET {{api}}/19400645?keyType=NC
+
 ### POST ITEM
 POST {{api}}/
 Content-Type: application/json
 
 {
-    "NumCtrl":"19400585",
-    "Nombres":"Janeth Andrea",
-    "Apellidos":"Guillén de la Mora"
+    "usuario":"Legendario",
+    "nombre":"Jesús Alberto Partida Michel",
+    "email":"chuy492001@gmail.com",
+    "contraseña":"Legendario156",
+    "tipo":false
 }
-### PUT ITEM
-PUT {{api}}/19400585
-Content-Type: application/json
-
-{
-    "NumCtrl":"19400585",
-    "Nombres":"Janeth Andrea",
-    "Apellidos":"Guillén"
-}
-### DELETE ITEM
-DELETE {{api}}/67190d9d01b3050028d1b48f
