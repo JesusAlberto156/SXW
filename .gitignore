@@ -25,4 +25,4 @@ dist-ssr
 
 #Archivos especificos
 .env
-credenciales.js
+credentials.js

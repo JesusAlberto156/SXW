@@ -6,7 +6,7 @@ const app = express();
 
 import { mongoose } from './config/database.config';
 
-import routeAPI from './tec/tepic/routes/index';
+import routeAPI from './sxw/routes/index';
 
 
 app.set('port', config.PORT);
