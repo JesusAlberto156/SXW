@@ -1,6 +1,7 @@
 @api = http://localhost:3156/sxw/usuarios
 
-
+### GET COMPROBAR CORREO
+GET {{api}}/verificar/?email=Hello@hsh.com
 ### POST ITEM
 POST {{api}}/
 Content-Type: application/json
