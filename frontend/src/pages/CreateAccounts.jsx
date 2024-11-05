@@ -59,135 +59,143 @@ function CreateAccounts () {
             }else if (!/^[a-zA-Z ]+$/.test(nombre)) {
                 setNombre("");
                 toast("¡El nombre completo solo acepta letras y espacios sin acentos!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(nombre.length < 10){
                 setNombre("");
                 toast("¡El nombre completo debe de tener mas de 10 caracteres!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(nombre.length > 100){
                 setNombre("");
                 toast("¡El nombre completo no debe de tener mas de 100 caracteres!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
-            }
-            {/*--------NOMBRE--------*/}
-            {/*--------USUARIO--------*/}
-            if(usuario == ""){
+            }else if(usuario == ""){{/*--------NOMBRE--------*/}{/*--------USUARIO--------*/}
                 toast("¡Falta agregar el nombre de usuario!",{
                     className: "toast-mensaje-incorrecto"
                 });
             }else if (!/^[a-zA-Z0-9]+$/.test(usuario)) {
                 setUsuario("");
                 toast("¡El nombre de usuario solo acepta letras y numeros sin acentos!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(usuario.length < 5){
                 setUsuario("");
                 toast("¡El nombre de usuario debe de tener mas de 5 caracteres!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(usuario.length > 20){
                 setUsuario("");
                 toast("¡El nombre de usuario no debe de tener mas de 20 caracteres!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
-            }
-            {/*--------USUARIO--------*/}
-            {/*--------EMAIL--------*/}
-            if(email == ""){
+            }else if(email == ""){{/*--------USUARIO--------*/}{/*--------EMAIL--------*/}
                 toast("¡Falta agregar el e-mail!",{
                     className: "toast-mensaje-incorrecto"
                 });
             }else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
                 setEmail("");
                 toast("¡El email tiene que seguir el siguiente formato: ejemplo@dominio.com!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
-            }
-            {/*--------EMAIL--------*/}
-            {/*--------CONTRASEÑA--------*/}
-            if(contraseña == ""){
+            }else if(contraseña == ""){{/*--------EMAIL--------*/}{/*--------CONTRASEÑA--------*/}
                 toast("¡Falta agregar la contraseña!",{
                     className: "toast-mensaje-incorrecto"
                 });
             }else if(!/^[!@#$%^&*()_+][a-zA-Z0-9]+$/.test(contraseña)){
                 setContraseña("");
                 toast("¡La contraseña debe iniciar con (!@#$%^&*()_+) y continuar con letras y numeros sin acentos!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(contraseña.length < 8){
                 setContraseña("");
                 toast("¡La contraseña debe de tener mas de 8 caracteres!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(contraseña.length > 30){
                 setContraseña("");
                 toast("¡La contraseña no debe de tener mas de 30 caracteres!",{
-                    className: "toast-mensaje-incorrecto",
+                    className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
-            }
-            {/*--------CONTRASEÑA--------*/}
+            }else{{/*--------CONTRASEÑA--------*/}
 
-            const verificarCorreo = await fetch(`http://localhost:3156/sxw/usuarios/verificar/?email=${email}`)
+                const verificarCorreo = await fetch(`http://localhost:3156/sxw/usuarios/verificar/correo/?email=${email}`)
             
-            if (verificarCorreo.ok) { 
-                const datos = await verificarCorreo.json(); 
+                if (verificarCorreo.ok) { 
 
-                if(datos.data.status == "invalid"){
-                    toast("¡El correo electronico no existe!",{
-                        className: "toast-mensaje-incorrecto",
-                        autoClose: 6000
-                    });
-                }else{
-                    const insertarUsuario = await fetch("http://localhost:3156/sxw/usuarios/", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
+                    const verificarCuenta = await fetch(`http://localhost:3156/sxw/usuarios/verificar/cuenta/?email=${email}`)
 
-                        },
-                        body: JSON.stringify({
-                            usuario:usuario,
-                            nombre:nombre,
-                            email:email,
-                            contraseña:contraseña,
-                            tipo: false 
-                        })
-                    });
+                    if(!verificarCuenta.ok){
 
-                    if (insertarUsuario.ok) {
-                        setLoadingHome(true);
-                        document.title = "Cargando...";
-                        toast("¡Se creo la cuenta correctamente!",{
-                            className: "toast-mensaje-correcto",
-                            autoClose: 2000
+                        const datos = await verificarCorreo.json(); 
+                        
+                        if(datos.data.status == "invalid"){
+                            toast("¡El correo electronico no existe!",{
+                                className: "toast-mensaje-peligro",
+                                autoClose: 6000
+                            });
+                        }else{
+                            const insertarUsuario = await fetch("http://localhost:3156/sxw/usuarios/", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+
+                                },
+                                body: JSON.stringify({
+                                    usuario:usuario,
+                                    nombre:nombre,
+                                    email:email,
+                                    contraseña:contraseña,
+                                    tipo: false 
+                                })
+                            });
+
+                            const insertarCuenta = await fetch(`http://localhost:3156/sxw/usuarios/${email}?contraseña=${contraseña}`,{
+                                method: "POST"
+                            });
+
+                            if (insertarUsuario.ok && insertarCuenta.ok) {
+                                setLoadingHome(true);
+                                document.title = "Cargando...";
+                                toast("¡Se creo la cuenta correctamente!",{
+                                    className: "toast-mensaje-correcto",
+                                    autoClose: 2000
+                                });
+                                await delay(3000);
+                                sendEmailBienvenida();
+                                navigate("/Inicio",{replace: true});
+                                await delay(2000);
+                                document.title = "SXW - INICIO";
+                                setLoadingHome(false);
+                            } else {
+                                const errorDataU = await insertarUsuario.json();
+                                const errorDataC = await insertarCuenta.json();
+
+                                toast(`Error: ${errorDataU.message} y ${errorDataC.message}`,{
+                                    className: "toast-mensaje-incorrecto"
+                                });    
+                            }
+                        }
+                    }else{
+                        toast("¡El email ya se encuentra registrado!",{
+                            className: "toast-mensaje-peligro",
+                            autoClose: 6000
                         });
-                        await delay(3000);
-                        sendEmailBienvenida();
-                        navigate("/Inicio",{replace: true});
-                        await delay(2000);
-                        document.title = "SXW - INICIO";
-                        setLoadingHome(false);
-                    } else {
-                        const errorData = await insertarUsuario.json();
-                        toast(`Error: ${errorData.message}`,{
-                            className: "toast-mensaje-incorrecto"
-                        });    
                     }
+                } else {
+                    console.error("Error al verificar el correo:", verificarCorreo.status);
                 }
-            } else {
-                console.error("Error al verificar el correo:", verificarCorreo.status);
             }
         } catch (error) {
             console.error("Error al crear la cuenta:", error);

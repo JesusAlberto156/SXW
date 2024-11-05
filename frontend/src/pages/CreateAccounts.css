@@ -120,6 +120,37 @@
     }
 }
 /*--------ALERTA INCORRECTO--------*/
+/*--------ALERTA PELIGRO--------*/
+.toast-mensaje-peligro {
+    background: darkgoldenrod;
+    color: #fff;
+    font-size: 18px;
+    padding: 5px 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    top: 5px;
+    text-align: center;
+    word-wrap: break-word;
+    max-width: 90vw;
+}
+@media (max-width: 768px) {
+    .toast-mensaje-peligro {
+        font-size: 16px;
+        margin-top: 5px;
+        top: 10px;
+        left: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-mensaje-peligro {
+        font-size: 14px;
+        margin-top: 5px;
+        top: 10px;
+        left: 16px;
+    }
+}
+/*--------ALERTA PELIGRO--------*/
 /*--------LOGO PARA CREATEACCOUNTS--------*/
 .logo-menu-createAccounts {
     position: relative;

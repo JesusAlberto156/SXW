@@ -6,6 +6,9 @@ import './Login.css'
 import Logo from "../../img/Logo-1.png"
 
 function Login () {  
+  const [email, setEmail] = useState("");
+  const [contraseña, setContraseña] = useState("");
+    
   const [showTextEmail, setShowTextEmail] = useState(false);
   const [showTextContraseña, setShowTextContraseña] = useState(false);
   const [loadingCreateAccounts, setLoadingCreateAccounts] = useState(false);
@@ -34,18 +37,80 @@ function Login () {
     setLoadingCreateAccounts(false);
   };
 
-  const Inicio = async () => {
-    setLoadingHome(true);
-    document.title = "Cargando...";
-    toast("¡Se inicio sesión correctamente!",{
-      className: "toast-mensaje-correcto",
-      autoClose: 2000
-    });
-    await delay(3000);
-    navigate("/Inicio",{replace: true});
-    await delay(2000);
-    document.title = "SXW - INICIO";
-    setLoadingHome(false);
+  const IniciarSesion = async () => {
+    try {
+      {/*--------EMAIL--------*/}
+      if(email == ""){
+        toast("¡Falta agregar el e-mail!",{
+            className: "toast-mensaje-incorrecto"
+        });
+      }else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+        setEmail("");
+        toast("¡El email tiene que seguir el siguiente formato: ejemplo@dominio.com!",{
+            className: "toast-mensaje-peligro",
+            autoClose: 6000
+        });
+      }else if(contraseña == ""){{/*--------EMAIL--------*/}{/*--------CONTRASEÑA--------*/}
+        toast("¡Falta agregar la contraseña!",{
+            className: "toast-mensaje-incorrecto"
+        });
+      }else if(!/^[!@#$%^&*()_+][a-zA-Z0-9]+$/.test(contraseña)){
+        setContraseña("");
+        toast("¡La contraseña debe iniciar con (!@#$%^&*()_+) y continuar con letras y numeros sin acentos!",{
+            className: "toast-mensaje-peligro",
+            autoClose: 6000
+        });
+      }else if(contraseña.length < 8){
+        setContraseña("");
+        toast("¡La contraseña debe de tener mas de 8 caracteres!",{
+            className: "toast-mensaje-peligro",
+            autoClose: 6000
+        });
+      }else if(contraseña.length > 30){
+        setContraseña("");
+        toast("¡La contraseña no debe de tener mas de 30 caracteres!",{
+            className: "toast-mensaje-peligro",
+            autoClose: 6000
+        });
+      }else{{/*--------CONTRASEÑA--------*/}
+        
+        const existeCuenta = await fetch(`http://localhost:3156/sxw/usuarios/existe/cuenta/?email=${email}`)
+        
+        if(existeCuenta.ok){
+
+          const dato = await existeCuenta.json();
+          
+          if(dato.contraseña == contraseña){
+            setLoadingHome(true);
+            document.title = "Cargando...";
+            toast("¡Se inicio sesión correctamente!",{
+              className: "toast-mensaje-correcto",
+              autoClose: 2000
+            });
+            await delay(4000);
+            navigate("/Inicio",{replace: true});
+            await delay(2000);
+            document.title = "SXW - INICIO";
+            setLoadingHome(false);
+          }else{
+            toast("¡La contraseña no es correcta!",{
+              className: "toast-mensaje-peligro",
+              autoClose: 2000
+            });
+          }
+        }else{
+          toast("¡La cuenta no existe!",{
+            className: "toast-mensaje-incorrecto",
+            autoClose: 2000
+          });    
+        }
+      }
+    } catch (error) {
+      console.error("Error al inciar sesion:", error);
+      toast("¡No es posible iniciar sesion!",{
+          className: "toast-mensaje-incorrecto"
+      });
+    }
   };
 
 
@@ -58,7 +123,7 @@ function Login () {
       closeOnClick
       pauseOnHover
       draggable
-      limit={2}/>
+      limit={5}/>
 
 			<div className='container menu-login'>
         <img src={Logo} alt="Logo de SXW" className="logo-menu-login"/>
@@ -68,6 +133,7 @@ function Login () {
           <div className="orientacion-campo-login">
             <div id="inputEmail" className="entryarea">
               <input type="text" required
+                value={email}
                 onClick={(e) => {
                   e.target.style.color = "aqua"
                   e.target.style.borderBottom = "2px solid aqua";
@@ -81,7 +147,9 @@ function Login () {
                 }}
                 onFocus={(e) => {
                   e.target.nextSibling.style.color = "aqua";
-                }}/>
+                }}
+                onChange={(e) => setEmail(e.target.value)}
+              />
               <label className="labelLine" for="myInput">E-mail</label>
             </div>
           </div>
@@ -98,6 +166,7 @@ function Login () {
           <div className="orientacion-campo-login">
             <div id="inputPassword" className="entryarea">
               <input type="password" required
+                value={contraseña}
                 onClick={(e) => {
                   e.target.style.color = "aqua"
                   e.target.style.borderBottom = "2px solid aqua";
@@ -111,7 +180,9 @@ function Login () {
                 }}
                 onFocus={(e) => {
                   e.target.nextSibling.style.color = "aqua";
-                }}/>
+                }}
+                onChange={(e) => setContraseña(e.target.value)}
+              />
               <label className="labelLine" for="myInput">Contraseña</label>
             </div>
           </div>
@@ -129,9 +200,7 @@ function Login () {
           </div> 
           ) : (
             <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
-              onClick={
-                Inicio
-              }
+              onClick={IniciarSesion}
             >
               INICIAR SESIÓN
             </button>
