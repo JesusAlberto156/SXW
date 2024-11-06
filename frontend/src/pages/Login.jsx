@@ -30,14 +30,17 @@ function Login () {
   const CrearCuenta = async () => {
     setLoadingCreateAccounts(true);
     document.title = "Cargando...";
-    await delay(2000);
+    await delay(1000);
     navigate("/CrearCuenta",{replace: true});
-    await delay(2000);
     document.title = "SXW - CREAR CUENTA";
     setLoadingCreateAccounts(false);
   };
 
   const IniciarSesion = async () => {
+
+    setLoadingHome(true);
+    document.title = "Cargando...";
+
     try {
       {/*--------EMAIL--------*/}
       if(email == ""){
@@ -81,17 +84,13 @@ function Login () {
           const dato = await existeCuenta.json();
           
           if(dato.contraseña == contraseña){
-            setLoadingHome(true);
-            document.title = "Cargando...";
             toast("¡Se inicio sesión correctamente!",{
               className: "toast-mensaje-correcto",
-              autoClose: 2000
+              autoClose: 1000
             });
-            await delay(4000);
-            navigate("/Inicio",{replace: true});
             await delay(2000);
+            navigate("/Inicio",{replace: true});
             document.title = "SXW - INICIO";
-            setLoadingHome(false);
           }else{
             toast("¡La contraseña no es correcta!",{
               className: "toast-mensaje-peligro",
@@ -111,6 +110,9 @@ function Login () {
           className: "toast-mensaje-incorrecto"
       });
     }
+
+    setLoadingHome(false);
+
   };
 
 
@@ -195,14 +197,14 @@ function Login () {
         {/*---------------------------------CAMPO DE CONTRASEÑA---------------------------------*/}
         <div className="espacio-componentes-login-1"></div>
         {loadingHome ? (
-          <div class="spinner-border text-danger" role="status">
+          <div class="spinner-border text-success" role="status">
             <span class="visually-hidden">Cargando...</span>
           </div> 
           ) : (
-            <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
+            <button type="button" className="btn btn-outline-success" data-bs-dismiss="modal"
               onClick={IniciarSesion}
             >
-              INICIAR SESIÓN
+              Iniciar sesión
             </button>
           )
         }
@@ -212,7 +214,7 @@ function Login () {
             <span class="visually-hidden">Cargando...</span>
           </div>
           ) : (
-            <button className="btn btn-link" onClick={CrearCuenta}>Crear Cuenta</button>
+            <button className="btn btn-link" onClick={CrearCuenta}>Crear cuenta</button>
           )
         }    
       </div>

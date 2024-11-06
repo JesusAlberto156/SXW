@@ -50,6 +50,10 @@ function CreateAccounts () {
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     const CrearCuenta = async () => {
+
+        setLoadingHome(true);
+        document.title = "Cargando...";
+                                
         try {
             {/*--------NOMBRE--------*/}
             if(nombre == ""){
@@ -166,18 +170,14 @@ function CreateAccounts () {
                             });
 
                             if (insertarUsuario.ok && insertarCuenta.ok) {
-                                setLoadingHome(true);
-                                document.title = "Cargando...";
                                 toast("¡Se creo la cuenta correctamente!",{
                                     className: "toast-mensaje-correcto",
-                                    autoClose: 2000
+                                    autoClose: 1000
                                 });
-                                await delay(3000);
+                                await delay(2000);
                                 sendEmailBienvenida();
                                 navigate("/Inicio",{replace: true});
-                                await delay(2000);
                                 document.title = "SXW - INICIO";
-                                setLoadingHome(false);
                             } else {
                                 const errorDataU = await insertarUsuario.json();
                                 const errorDataC = await insertarCuenta.json();
@@ -203,14 +203,16 @@ function CreateAccounts () {
                 className: "toast-mensaje-incorrecto"
             });
         }
+
+        setLoadingHome(false);
+
     };
 
     const IniciarSesion = async () => {
         setLoadingLogin(true);
         document.title = "Cargando...";
-        await delay(2000);
+        await delay(1000);
         navigate("/",{replace: true});
-        await delay(2000);
         document.title = "SXW - INICIAR SESION";
         setLoadingLogin(false);
     };
@@ -364,14 +366,14 @@ function CreateAccounts () {
                 {/*---------------------------------CAMPO DE CONTRASEÑA---------------------------------*/}
                 <div className="espacio-componentes-createAccounts-1"></div>
                 {loadingHome ? (
-                    <div class="spinner-border text-danger" role="status">
+                    <div class="spinner-border text-success" role="status">
                         <span class="visually-hidden">Cargando...</span>
                     </div> 
                 ) : (
-                    <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
+                    <button type="button" className="btn btn-outline-success" data-bs-dismiss="modal"
                         onClick={CrearCuenta}
                     >
-                        CREAR CUENTA
+                        Crear cuenta
                     </button>
                 )
                 }
@@ -381,7 +383,7 @@ function CreateAccounts () {
                         <span class="visually-hidden">Cargando...</span>
                     </div>
                     ) : (
-                        <button className="btn btn-link" onClick={IniciarSesion}>Iniciar Sesión</button>
+                        <button className="btn btn-link" onClick={IniciarSesion}>Iniciar sesión</button>
                     )
                 }    
             </div>

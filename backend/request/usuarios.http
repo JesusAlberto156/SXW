@@ -1,7 +1,7 @@
 @api = http://localhost:3156/sxw/usuarios
 
 ### GET INICIO SESION
-GET {{api}}/existe/cuenta/?email=chuy01@gmail.com
+GET {{api}}/existe/cuenta/?email=chuy492001@gmail.com
 ### GET COMPROBAR CUENTA
 GET {{api}}/verificar/cuenta/?email=chuy@gmail.com
 ### GET COMPROBAR CORREO
@@ -18,4 +18,4 @@ Content-Type: application/json
     "tipo":false
 }
 ### POST CUENTA
-POST {{api}}/chuy492001@gmail.com?contraseña=Halo4321reach
+POST {{api}}/chuy492001@gmail.com?contraseña=@Halo4321reach
