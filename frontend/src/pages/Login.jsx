@@ -40,36 +40,43 @@ function Login () {
 
     setLoadingHome(true);
     document.title = "Cargando...";
-
+    await delay(1000)
+    
     try {
       {/*--------EMAIL--------*/}
       if(email == ""){
+        document.title = "SXW - INICIAR SESIÓN"
         toast("¡Falta agregar el e-mail!",{
             className: "toast-mensaje-incorrecto"
         });
       }else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+        document.title = "SXW - INICIAR SESIÓN"
         setEmail("");
         toast("¡El email tiene que seguir el siguiente formato: ejemplo@dominio.com!",{
             className: "toast-mensaje-peligro",
             autoClose: 6000
         });
       }else if(contraseña == ""){{/*--------EMAIL--------*/}{/*--------CONTRASEÑA--------*/}
+        document.title = "SXW - INICIAR SESIÓN"  
         toast("¡Falta agregar la contraseña!",{
             className: "toast-mensaje-incorrecto"
         });
       }else if(!/^[!@#$%^&*()_+][a-zA-Z0-9]+$/.test(contraseña)){
+        document.title = "SXW - INICIAR SESIÓN"
         setContraseña("");
         toast("¡La contraseña debe iniciar con (!@#$%^&*()_+) y continuar con letras y numeros sin acentos!",{
             className: "toast-mensaje-peligro",
             autoClose: 6000
         });
       }else if(contraseña.length < 8){
+        document.title = "SXW - INICIAR SESIÓN"
         setContraseña("");
         toast("¡La contraseña debe de tener mas de 8 caracteres!",{
             className: "toast-mensaje-peligro",
             autoClose: 6000
         });
       }else if(contraseña.length > 30){
+        document.title = "SXW - INICIAR SESIÓN"
         setContraseña("");
         toast("¡La contraseña no debe de tener mas de 30 caracteres!",{
             className: "toast-mensaje-peligro",
@@ -92,12 +99,14 @@ function Login () {
             navigate("/Inicio",{replace: true});
             document.title = "SXW - INICIO";
           }else{
+            document.title = "SXW - INICIAR SESIÓN"
             toast("¡La contraseña no es correcta!",{
               className: "toast-mensaje-peligro",
               autoClose: 2000
             });
           }
         }else{
+          document.title = "SXW - INICIAR SESIÓN"
           toast("¡La cuenta no existe!",{
             className: "toast-mensaje-incorrecto",
             autoClose: 2000
@@ -105,19 +114,20 @@ function Login () {
         }
       }
     } catch (error) {
+      document.title = "SXW - INICIAR SESIÓN"
       console.error("Error al inciar sesion:", error);
       toast("¡No es posible iniciar sesion!",{
           className: "toast-mensaje-incorrecto"
       });
     }
-
+    
     setLoadingHome(false);
-
+    
   };
 
 
   return(
-    <div className="fondo-login">
+    <div className="fondo-login" >
 
       <ToastContainer
       position="top-right"

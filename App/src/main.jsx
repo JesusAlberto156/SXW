@@ -1,9 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import Login from './pages/Login.jsx'
-import CreateAccounts from './pages/CreateAccounts.jsx'
-import Home from './pages/Home.jsx'
+import './components/styled/Backgrounds.css'
+import "react-toastify/dist/ReactToastify.css";
+
+import CreateAccounts from './pages/CreateAccounts'
+import Login from './pages/Login'
 
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 
@@ -13,17 +15,17 @@ const router = createHashRouter([
     element:<Login/>
   },
   {
-    path:'/CrearCuenta',
-    element:<CreateAccounts/>
+    path:'/Login',
+    element:<Login/>
   },
   {
-    path:'/Inicio',
-    element:<Home/>
+    path:'/CreateAccounts',
+    element:<CreateAccounts/>
   }
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>  
+    <RouterProvider router={router}/>
   </StrictMode>,
 )

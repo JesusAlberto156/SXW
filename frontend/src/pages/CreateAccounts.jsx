@@ -53,80 +53,95 @@ function CreateAccounts () {
 
         setLoadingHome(true);
         document.title = "Cargando...";
-                                
+        await delay(1000)
+
         try {
             {/*--------NOMBRE--------*/}
             if(nombre == ""){
+                document.title = "SXW - CREAR CUENTA"
                 toast("¡Falta agregar el nombre completo!",{
                     className: "toast-mensaje-incorrecto"
                 });
             }else if (!/^[a-zA-Z ]+$/.test(nombre)) {
+                document.title = "SXW - CREAR CUENTA"
                 setNombre("");
                 toast("¡El nombre completo solo acepta letras y espacios sin acentos!",{
                     className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(nombre.length < 10){
+                document.title = "SXW - CREAR CUENTA"
                 setNombre("");
                 toast("¡El nombre completo debe de tener mas de 10 caracteres!",{
                     className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(nombre.length > 100){
+                document.title = "SXW - CREAR CUENTA"
                 setNombre("");
                 toast("¡El nombre completo no debe de tener mas de 100 caracteres!",{
                     className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(usuario == ""){{/*--------NOMBRE--------*/}{/*--------USUARIO--------*/}
+                document.title = "SXW - CREAR CUENTA"
                 toast("¡Falta agregar el nombre de usuario!",{
                     className: "toast-mensaje-incorrecto"
                 });
             }else if (!/^[a-zA-Z0-9]+$/.test(usuario)) {
+                document.title = "SXW - CREAR CUENTA"
                 setUsuario("");
                 toast("¡El nombre de usuario solo acepta letras y numeros sin acentos!",{
                     className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(usuario.length < 5){
+                document.title = "SXW - CREAR CUENTA"
                 setUsuario("");
                 toast("¡El nombre de usuario debe de tener mas de 5 caracteres!",{
                     className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(usuario.length > 20){
+                document.title = "SXW - CREAR CUENTA"
                 setUsuario("");
                 toast("¡El nombre de usuario no debe de tener mas de 20 caracteres!",{
                     className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(email == ""){{/*--------USUARIO--------*/}{/*--------EMAIL--------*/}
+                document.title = "SXW - CREAR CUENTA"
                 toast("¡Falta agregar el e-mail!",{
                     className: "toast-mensaje-incorrecto"
                 });
             }else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+                document.title = "SXW - CREAR CUENTA"
                 setEmail("");
                 toast("¡El email tiene que seguir el siguiente formato: ejemplo@dominio.com!",{
                     className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(contraseña == ""){{/*--------EMAIL--------*/}{/*--------CONTRASEÑA--------*/}
+                document.title = "SXW - CREAR CUENTA"
                 toast("¡Falta agregar la contraseña!",{
                     className: "toast-mensaje-incorrecto"
                 });
             }else if(!/^[!@#$%^&*()_+][a-zA-Z0-9]+$/.test(contraseña)){
+                document.title = "SXW - CREAR CUENTA"
                 setContraseña("");
                 toast("¡La contraseña debe iniciar con (!@#$%^&*()_+) y continuar con letras y numeros sin acentos!",{
                     className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(contraseña.length < 8){
+                document.title = "SXW - CREAR CUENTA"
                 setContraseña("");
                 toast("¡La contraseña debe de tener mas de 8 caracteres!",{
                     className: "toast-mensaje-peligro",
                     autoClose: 6000
                 });
             }else if(contraseña.length > 30){
+                document.title = "SXW - CREAR CUENTA"
                 setContraseña("");
                 toast("¡La contraseña no debe de tener mas de 30 caracteres!",{
                     className: "toast-mensaje-peligro",
@@ -145,6 +160,7 @@ function CreateAccounts () {
                         const datos = await verificarCorreo.json(); 
                         
                         if(datos.data.status == "invalid"){
+                            document.title = "SXW - CREAR CUENTA"
                             toast("¡El correo electronico no existe!",{
                                 className: "toast-mensaje-peligro",
                                 autoClose: 6000
@@ -181,23 +197,26 @@ function CreateAccounts () {
                             } else {
                                 const errorDataU = await insertarUsuario.json();
                                 const errorDataC = await insertarCuenta.json();
-
+                                document.title = "SXW - CREAR CUENTA"
                                 toast(`Error: ${errorDataU.message} y ${errorDataC.message}`,{
                                     className: "toast-mensaje-incorrecto"
                                 });    
                             }
                         }
                     }else{
+                        document.title = "SXW - CREAR CUENTA"
                         toast("¡El email ya se encuentra registrado!",{
                             className: "toast-mensaje-peligro",
                             autoClose: 6000
                         });
                     }
                 } else {
+                    document.title = "SXW - CREAR CUENTA"
                     console.error("Error al verificar el correo:", verificarCorreo.status);
                 }
             }
         } catch (error) {
+            document.title = "SXW - CREAR CUENTA"
             console.error("Error al crear la cuenta:", error);
             toast("¡No es posible crear la cuenta!",{
                 className: "toast-mensaje-incorrecto"
